@@ -1,3 +1,38 @@
-
+body {
+  background-color: #595959;
+  width: 100%;
+  height: auto;
+  padding: 0;
+  margin: 0;
+}
+body .container {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: auto 4em;
+  margin-top: 1.5em;
+}
+body .container .head {
+  color: #A5A5A5;
+  background-color: #7f7f7f;
+}
+body .container .row {
+  min-height: 800px;
+  width: 105em;
+}
+body .container .row #listBar {
+  background-color: #CCCCCC;
+  display: flex;
+  flex-direction: column;
+}
+body .container .row #listBar #itemSearcher {
+  margin-top: 10px;
+}
+body .container .row #listBar .list-group {
+  margin-top: 20px;
+}
+body .container .row #itemContainer {
+  background-color: #dadfea;
+}
 
 /*# sourceMappingURL=styles.css.map */

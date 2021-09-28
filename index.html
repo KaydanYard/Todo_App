@@ -4,9 +4,39 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="js/main.js"></script>
+  <link rel="stylesheet" href="css/styles.css">
   <title>Todo App</title>
 </head>
 <body>
-  
+  <div class="container">
+    <div class="head">
+      <h1>The Head</h1>
+    </div>
+    <div class="row">
+      <div class="col-3" id="listBar">
+        <input type="text" name="itemSearcher" id="itemSearcher" placeholder="Search List Name Here">
+        <div class="list-group">
+          <a href="#" class="list-group-item list-group-item-action active">first</a>
+          <a href="#" class="list-group-item list-group-item-action">second</a>
+          <a href="#" class="list-group-item list-group-item-action">third</a>
+          <a href="#" class="list-group-item list-group-item-action">fourth</a>
+          <a href="#" class="list-group-item list-group-item-action">fifth</a>
+          <a href="#" class="list-group-item list-group-item-action">sixth</a>
+          <a href="#" class="list-group-item list-group-item-action">seventh</a>
+          <a href="#" class="list-group-item list-group-item-action">eighth</a>
+          <a href="#" class="list-group-item list-group-item-action">ninth</a>
+        </div>
+      </div>
+      <div class="col-9" id="itemContainer">
+        <h1>current item name</h1>
+        <div id="activeList">current item list</div>
+        <button onclick="addItem">Add Item</button>
+        <button onclick="removeItem">Remove Item</button>
+      </div>
+    </div>
+  </div>
 </body>
 </html>

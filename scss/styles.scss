@@ -1,0 +1,45 @@
+@import "_colors.scss";
+
+body {
+  background-color: $davys;
+  width: 100%;
+  height: auto;
+  padding: 0;
+  margin: 0;
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: auto 4em;
+    margin-top: 1.5em;
+
+    .head {
+      color: $quickSilver;
+      background-color: $web;
+    }
+
+    .row {
+      min-height: 800px;
+      width: 105em;
+
+      #listBar {
+        background-color: $lightGray;
+        display: flex;
+        flex-direction: column;
+
+        #itemSearcher {
+          margin-top: 10px;
+        }
+
+        .list-group {
+          margin-top: 20px;
+        }
+      }
+
+      #itemContainer {
+        background-color: $dad;
+      }
+    }
+  }
+}
