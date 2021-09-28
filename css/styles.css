@@ -12,26 +12,36 @@ body .container {
   margin: auto 4em;
   margin-top: 1.5em;
 }
-body .container .head {
-  color: #A5A5A5;
-  background-color: #7f7f7f;
+body .container #headRow {
+  width: 105em;
 }
-body .container .row {
+body .container #headRow #head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #595959;
+  background-color: #A5A5A5;
+}
+body .container #bodyRow {
   min-height: 800px;
   width: 105em;
 }
-body .container .row #listBar {
+body .container #bodyRow #listBar {
   background-color: #CCCCCC;
   display: flex;
   flex-direction: column;
 }
-body .container .row #listBar #itemSearcher {
+body .container #bodyRow #listBar #itemSearcher {
   margin-top: 10px;
 }
-body .container .row #listBar .list-group {
+body .container #bodyRow #listBar .list-group {
   margin-top: 20px;
 }
-body .container .row #itemContainer {
+body .container #bodyRow #listBar .list-group .list-group-item.active {
+  background-color: #595959;
+  border: 3px solid #A5A5A5;
+}
+body .container #bodyRow #itemContainer {
   background-color: #dadfea;
 }
 

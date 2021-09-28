@@ -14,12 +14,19 @@ body {
     margin: auto 4em;
     margin-top: 1.5em;
 
-    .head {
-      color: $quickSilver;
-      background-color: $web;
+    #headRow {
+      width: 105em;
+
+      #head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: $davys;
+        background-color: $quickSilver;
+      }
     }
 
-    .row {
+    #bodyRow {
       min-height: 800px;
       width: 105em;
 
@@ -34,6 +41,15 @@ body {
 
         .list-group {
           margin-top: 20px;
+          
+          .list-group-item {
+
+          }
+          .list-group-item.active {
+            background-color: $davys;
+            border: 3px solid $quickSilver;
+          }
+
         }
       }
 
