@@ -131,9 +131,10 @@ function render() {
   document.getElementById('current-list-name').innerText = currentList.name;
 
   let todosHtml = '<ul class="list-group-flush">';
-  currentList.todos.forEach((list) => {
+  currentList.todos.forEach((todos) => {
     todosHtml += `<li class="list-group-item">${todo.text}</li>`;
   });
+  todosHtml += '</ul>'
 
   document.getElementById('current-list-todos').innerHTML = todosHtml;
 }
