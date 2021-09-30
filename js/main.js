@@ -119,3 +119,43 @@ const lists = {
 }
 
 const currentList = lists[0];
+
+function render() {
+  let listsHtml = '<ul class="list-group">';
+  lists.forEach((list) => {
+    listsHtml += `<li class="list-group-item">${list.name}</li>`;
+  });
+  listsHtml += '</ul>';
+
+  document.getElementById('lists').innerHTML = listsHtml;
+  document.getElementById('current-list-name').innerText = currentList.name;
+
+  let todosHtml = '<ul class="list-group-flush">';
+  currentList.todos.forEach((list) => {
+    todosHtml += `<li class="list-group-item">${todo.text}</li>`;
+  });
+
+  document.getElementById('current-list-todos').innerHTML = todosHtml;
+}
+
+function addTodo() {
+  const text = document.getElementById('todo-add-box').value;
+  if (text) {
+    currentList.todos.push({
+      text: text,
+      completed: false
+    })
+    render();
+  }
+}
+
+function removeTodo() {
+  const text = document.getElementById('todo-remove-box').value;
+  if (text) {
+    currentList.todos.filter({
+      text: text,
+      completed: false
+    })
+    render();
+  }
+}
