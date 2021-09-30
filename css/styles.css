@@ -21,6 +21,7 @@ body .container #headRow #head {
   align-items: center;
   color: #595959;
   background-color: #A5A5A5;
+  padding: 10px;
 }
 body .container #bodyRow {
   min-height: 800px;
@@ -43,6 +44,11 @@ body .container #bodyRow #listBar .list-group .list-group-item.active {
 }
 body .container #bodyRow #itemContainer {
   background-color: #dadfea;
+}
+body .container #bodyRow #itemContainer #activeList {
+  display: flex;
+  flex-direction: column;
+  font-size: 18px;
 }
 
 /*# sourceMappingURL=styles.css.map */
