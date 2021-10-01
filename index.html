@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <script src="js/main.js"></script>
+
   <link rel="stylesheet" href="css/styles.css">
   <title>Todo App</title>
 </head>
@@ -21,39 +21,25 @@
     <div class="row" id="bodyRow">
       <div class="col-3" id="listBar">
         <input type="text" name="itemSearcher" id="itemSearcher" placeholder="Search List Name Here">
-        <div id="lists">
-          <ul class="list-group">
-            <li class="list-group-item list-group-item-action active">first</li> 
-            <li class="list-group-item list-group-item-action">second</li> 
-            <li class="list-group-item list-group-item-action">third</li> 
-            <li class="list-group-item list-group-item-action">fourth</li> 
-            <li class="list-group-item list-group-item-action">fifth</li> 
-            <li class="list-group-item list-group-item-action">sixth</li> 
-            <li class="list-group-item list-group-item-action">seventh</li> 
-            <li class="list-group-item list-group-item-action">eighth</li> 
-            <li class="list-group-item list-group-item-action">ninth</li> 
-          </ul>
-        </div>
+        <div id="lists"></div>
         
         
       </div>
       <div class="col-9" id="itemContainer">
-        <h1>current item name</h1>
-        <ul class="list-group-flush" id="current-list-todos">
-          <li class="list-group-item list-group-item-action"></li>
-          <li class="list-group-item list-group-item-action"></li>
-          <li class="list-group-item list-group-item-action"></li>
-          <li class="list-group-item list-group-item-action"></li>
-          <li class="list-group-item list-group-item-action"></li>
-          <li class="list-group-item list-group-item-action"></li>
-          <li class="list-group-item list-group-item-action"></li>
-          <li class="list-group-item list-group-item-action"></li>
-          <li class="list-group-item list-group-item-action"></li>
-        </ul>
-        <button id="todo-add-box" onclick="addTodo()">Add Item</button>
-        <button id="todo-remove-box" onclick="removeTodo()">Remove Item</button>
+        <h1 id="current-list-name">current item name</h1>
+        <ul class="list-group-flush" id="current-list-todos"></ul>
+        <div>
+          <input id="todo-add-box"  type="text">
+          <button id="todo-add-btn" onclick="addTodo()">Add Item</button>
+        </div>
+        <div>
+          <input id="todo-remove-box" type="text">
+          <button id="todo-remove-btn" onclick="removeTodo()">Remove Item</button>
+        </div>
+        
       </div>
     </div>
   </div>
+  <script src="js/main.js"></script>
 </body>
 </html>
