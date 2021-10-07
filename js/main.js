@@ -46,13 +46,27 @@ function render() {
 
   let todosHtml = '<ul class="list-group-flush">';
   currentList.todos.forEach((todo) => {
-    todosHtml += `<li class="list-group-item">${todo.text}</li>`;
+    todosHtml += `<li class="list-group-item">${todo.text}<button onclick=editTodo()>Edit</button></li>`;
   });
   todosHtml += '</ul>'
 
   document.getElementById('current-list-todos').innerHTML = todosHtml;
 }
 
+function addList() {
+  const listadd = document.getElementById('list-add-box').value;
+  if (listadd) {
+    lists.push({
+      name: listadd,
+      todos: []
+    })
+  }    
+  render();
+}
+
+function removeList() {
+
+}
 
 function addTodo() {
   const textadd = document.getElementById('todo-add-box').value;
@@ -66,14 +80,17 @@ function addTodo() {
 }
 
 function removeTodo() {
-  console.log("remove");
   const textrem = document.getElementById('todo-remove-box').value;
-  console.log(textrem);
+
   if (textrem) {
     currentList.todos.filter({
       text: textrem,
       completed: false
     })
-  }
+  }    
   render();
+}
+
+function editTodo() {
+  console.log("Edit Mode");
 }
