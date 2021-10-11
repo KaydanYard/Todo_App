@@ -1,3 +1,4 @@
+var editMode = false;
 const lists = [
   {
     name: 'Shopping list',
@@ -44,12 +45,30 @@ function render() {
   document.getElementById('lists').innerHTML = listsHtml;
   document.getElementById('current-list-name').innerText = currentList.name;
 
+  
   let todosHtml = '<ul class="list-group-flush">';
-  currentList.todos.forEach((todo) => {
-    todosHtml += `<li class="list-group-item">${todo.text}<button onclick=editTodo()>Edit</button></li>`;
-  });
-  todosHtml += '</ul>'
 
+  if (editMode == true) {
+    todosHtml = '<ul class="list-group-flush">';
+    currentList.todos.forEach((todo) => {
+      todosHtml += `<li class="list-group-item"><input type="text" value="${todo.text}""></input>
+      <button onclick=saveTodo()>Save</button> 
+      <button onclick=removeTodo()>Delete</button></li>`;
+    });
+    todosHtml += '</ul>'
+  } else {
+    todosHtml = '<ul class="list-group-flush">';
+
+    currentList.todos.forEach((todo) => {
+      todosHtml +=
+        `<li class="list-group-item">
+        ${todo.text}
+        <button onclick=editTodo()>Edit</button>
+        </li>`;
+    });
+    todosHtml += '</ul>'
+  }
+  
   document.getElementById('current-list-todos').innerHTML = todosHtml;
 }
 
@@ -83,14 +102,25 @@ function removeTodo() {
   const textrem = document.getElementById('todo-remove-box').value;
 
   if (textrem) {
-    currentList.todos.filter({
-      text: textrem,
-      completed: false
+    currentList.todos = currentList.todos.filter( todo => {
+     return todo.text != textrem;
     })
   }    
   render();
 }
 
 function editTodo() {
-  console.log("Edit Mode");
+  editMode = true;
+  render();
 }
+
+function saveTodo() {
+  editMode = false;
+  render();
+  // Use the todo-add-box and modify the main.js to use it in the input box
+}
+
+function save() {
+  localStorage.setItem('currentList', JSON.stringify(currentList)); 
+  localStorage.setItem('lists', JSON.stringify(lists));
+ } 
