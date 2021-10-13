@@ -23,11 +23,13 @@
       <div class="col-3" id="listBar">
         <input type="text" name="itemSearcher" id="itemSearcher" placeholder="Search List Name Here">
         <div id="lists"></div>
-        <div>
+
+        <div id="lists-add">
           <input id="list-add-box" type="text">
           <button id="list-add-btn" onclick="addList()">New List</button>
         </div>
-        <div>
+
+        <div id="lists-del">
           <input id="list-remove-box" type="text">
           <button id="list-remove-btn" onclick="removeList()">Remove List</button>
         </div>
@@ -36,13 +38,19 @@
       <div class="col-9" id="itemContainer">
         <h1 id="current-list-name">current item name</h1>
         <ul class="list-group-flush" id="current-list-todos"></ul>
-        <div>
+
+        <div id="todos-add">
           <input id="todo-add-box"  type="text">
           <button id="todo-add-btn" onclick="addTodo()">Add Item</button>
         </div>
-        <div>
+
+        <div id="todos-del">
           <input id="todo-remove-box" type="text">
           <button id="todo-remove-btn" onclick="removeTodo()">Remove Item</button>
+        </div>
+
+        <div id="todos-edit">
+          <button onclick="editTodo()">Edit</button>
         </div>
       </div>
     </div>

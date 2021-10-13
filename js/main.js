@@ -32,6 +32,8 @@ const currentList = lists[0];
 
 render();
 
+
+
 function render() {
   let listsHtml = '<ul class="list-group">';
   let currentClass = 'active';
@@ -44,27 +46,24 @@ function render() {
   console.log(listsHtml);
   document.getElementById('lists').innerHTML = listsHtml;
   document.getElementById('current-list-name').innerText = currentList.name;
-
   
   let todosHtml = '<ul class="list-group-flush">';
 
   if (editMode == true) {
-    todosHtml = '<ul class="list-group-flush">';
-    currentList.todos.forEach((todo) => {
-      todosHtml += `<li class="list-group-item"><input type="text" value="${todo.text}""></input>
-      <button onclick=saveTodo()>Save</button> 
-      <button onclick=removeTodo()>Delete</button></li>`;
+    currentList.todos.forEach((todo, idx) => {
+      todosHtml += 
+        `<li class="list-group-item" id="todoId${idx}">
+        <input id="todo-input-box${idx}" type="text" value="${todo.text}"></input>
+        <button onclick="saveTodo(${idx})">Save</button> 
+        <button onclick="removeTodo(${idx})">Delete</button></li>`;
     });
     todosHtml += '</ul>'
   } else {
-    todosHtml = '<ul class="list-group-flush">';
-
-    currentList.todos.forEach((todo) => {
+    currentList.todos.forEach((todo, idx) => {
       todosHtml +=
-        `<li class="list-group-item">
+        `<li class="list-group-item"><input type="checkbox" id="todoCheckbox${idx}" onclick="onCheck(${idx})"></input>
         ${todo.text}
-        <button onclick=editTodo()>Edit</button>
-        </li>`;
+        <button onclick="clearTodo(${idx})" >Completed</button></li>`;
     });
     todosHtml += '</ul>'
   }
@@ -84,7 +83,13 @@ function addList() {
 }
 
 function removeList() {
-
+  const listrem = document.getElementById('list-remove-box').value;
+  if (listrem) {
+    lists.filter( list => {
+     return list != listrem;
+    })
+  }    
+  render();
 }
 
 function addTodo() {
@@ -98,8 +103,18 @@ function addTodo() {
   render();
 }
 
-function removeTodo() {
-  const textrem = document.getElementById('todo-remove-box').value;
+function saveTodo(index) {
+  editMode = false;
+  const textsave = document.getElementById('todo-input-box' + index).value;
+  if (textsave) {
+    currentList.todos[index].text = textsave;
+  }    
+  render();
+  // Use the todo-add-box and modify the main.js to use it in the input box
+}
+
+function removeTodo(index) {
+  const textrem = document.getElementById('todo-input-box' + index).value;
 
   if (textrem) {
     currentList.todos = currentList.todos.filter( todo => {
@@ -109,18 +124,29 @@ function removeTodo() {
   render();
 }
 
-function editTodo() {
-  editMode = true;
-  render();
+function onCheck(index) {
+  let todoChecker = document.getElementById("todoCheckbox" + index);
+  if (todoChecker.checked) {
+    currentList.todos[index].completed = true;
+  } else {
+    currentList.todos[index].completed = false;
+  }
 }
 
-function saveTodo() {
-  editMode = false;
+function clearTodo(index) {
+  
+}
+
+function editTodo() {
+  if (editMode == false) {
+    editMode = true;
+  } else {
+    editMode = false;
+  }
   render();
-  // Use the todo-add-box and modify the main.js to use it in the input box
 }
 
 function save() {
   localStorage.setItem('currentList', JSON.stringify(currentList)); 
   localStorage.setItem('lists', JSON.stringify(lists));
- } 
+} 
