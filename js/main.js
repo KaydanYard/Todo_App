@@ -1,37 +1,9 @@
 var editMode = false;
-const lists = [
-  {
-    name: 'Shopping list',
-    todos: [
-      {
-        text: 'bananas',
-        completed: false
-      },
-      {
-        text: '1 lbs ground turkey',
-        completed: false
-      }
-    ]
-  },
-  {
-    name: 'Honey do list',
-    todos: [
-      {
-        text: 'Meat',
-        completed: false
-      },
-      {
-        text: 'Chicken',
-        completed: false
-      }
-    ]
-  }
-]
+const lists = JSON.parse(window.localStorage.getItem('lists'));
 
-var currentList = lists[0];
+var currentList = JSON.parse(window.localStorage.getItem('currentList'));
 
 render();
-
 
 function render() {
   let listsHtml = '<ul class="list-group">';
@@ -72,6 +44,7 @@ function render() {
   }
   
   document.getElementById('current-list-todos').innerHTML = todosHtml;
+  save();
 }
 
 function addList() {
@@ -86,12 +59,7 @@ function addList() {
 }
 
 function removeList(index) {
-  const listrem = document.getElementById('list' + index).value;
-  if (listrem) {
-    lists.filter(list => {
-     return list != listrem;
-    })
-  }    
+  lists.splice(index,1)
   render();
 }
 
@@ -125,7 +93,7 @@ function removeTodo(index) {
   const textrem = document.getElementById('todo-input-box' + index).value;
 
   if (textrem) {
-    currentList.todos = currentList.todos.filter( todo => {
+    currentList.todos = currentList.todos.filter(todo => {
      return todo.text != textrem;
     })
   }    
@@ -139,6 +107,7 @@ function onCheck(index) {
   } else {
     currentList.todos[index].completed = false;
   }
+  save();
 }
 
 function clearTodo() {
@@ -168,6 +137,6 @@ function editTodo() {
 }
 
 function save() {
-  localStorage.setItem('currentList', JSON.stringify(currentList)); 
-  localStorage.setItem('lists', JSON.stringify(lists));
-} 
+  window.localStorage.setItem('currentList', JSON.stringify(currentList)); 
+  window.localStorage.setItem('lists', JSON.stringify(lists));
+}
