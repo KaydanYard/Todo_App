@@ -11,8 +11,8 @@ function render() {
   lists.forEach((list, idx) => {
     listsHtml += 
       `<li class="list-group-item ${currentClass}" id="list${idx}">
-      <button onclick="changeList(${idx})">${list.name}</button>
-      <button id="list-remove-btn" onclick="removeList(${idx})">X</button>
+        <button id="list-change-btn" onclick="changeList(${idx})">${list.name}</button>
+        <i id="listRemover" class="fa-solid fa-xmark" onclick="removeList(${idx})"></i>
       </li>`;
     currentClass = '';
   });
@@ -29,8 +29,8 @@ function render() {
       todosHtml += 
         `<li class="list-group-item" id="todoId${idx}">
         <input id="todo-input-box${idx}" type="text" value="${todo.text}"></input>
-        <button onclick="saveTodo(${idx})">Save</button> 
-        <button onclick="removeTodo(${idx})">Delete</button></li>`;
+        <button class="" onclick="saveTodo(${idx})">Save</button> 
+        <button class="" onclick="removeTodo(${idx})">Delete</button></li>`;
     });
     todosHtml += '</ul>'
   } else {

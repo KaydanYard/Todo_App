@@ -40,21 +40,50 @@ body {
           margin-top: 10px;
         }
 
-        .list-group {
-          margin-top: 20px;
+        #lists {
 
-          .list-group-item {
-            display: flex;
-            align-items: center;
+          .list-group {
+            margin-top: 20px;
+
+            .list-group-item {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              
+              #list-change-btn {
+                background-color: transparent;
+                color: black;
+                border: none;
+                cursor: pointer;
+                margin-right: 10px;
+              }
+            }
             
-            button {
-              margin-right: 10px;
+            .list-group-item.active {
+              background-color: $davys;
+              border: 3px solid $quickSilver;
+
+              #list-change-btn {
+                background-color: transparent;
+                color: $dad;
+                border: none;
+                cursor: pointer;
+              }
+            }
+
+            #listRemover {
+              cursor: pointer;
             }
           }
+        }
+
+        #lists-add {
           
-          .list-group-item.active {
-            background-color: $davys;
-            border: 3px solid $quickSilver;
+          #list-add-btn {
+            background: #ffffff;
+            border: 1px solid #767676;
+            border-radius: 3px;
+            cursor: pointer;
           }
         }
       }
@@ -67,6 +96,7 @@ body {
           flex-direction: column;
           font-size: 18px;
         }
+        
         #current-list-todos {
 
           .list-group-item {
