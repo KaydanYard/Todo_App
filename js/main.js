@@ -17,28 +17,27 @@ const lists = [
     name: 'Honey do list',
     todos: [
       {
-        text: 'bananas',
+        text: 'Meat',
         completed: false
       },
       {
-        text: '1 lbs ground turkey',
+        text: 'Chicken',
         completed: false
       }
     ]
   }
 ]
 
-const currentList = lists[0];
+var currentList = lists[0];
 
 render();
-
 
 
 function render() {
   let listsHtml = '<ul class="list-group">';
   let currentClass = 'active';
-  lists.forEach((list) => {
-    listsHtml += `<li class="list-group-item ${currentClass}">${list.name}</li>`;
+  lists.forEach((list, idx) => {
+    listsHtml += `<li class="list-group-item ${currentClass}"><button onclick="changeList(${idx})">${list.name}</button></li>`;
     currentClass = '';
   });
   listsHtml += '</ul>';
@@ -61,9 +60,9 @@ function render() {
   } else {
     currentList.todos.forEach((todo, idx) => {
       todosHtml +=
-        `<li class="list-group-item"><input type="checkbox" id="todoCheckbox${idx}" onclick="onCheck(${idx})"></input>
-        ${todo.text}
-        <button onclick="clearTodo(${idx})" >Completed</button></li>`;
+        `<li class="list-group-item" id="todo"><input type="checkbox" class="todo-checkbox" id="todoCheckbox${idx}" onclick="onCheck(${idx})"></input>
+        <p class="todo-text" id="todoText${idx}">${todo.text}</p>
+        </li>`;
     });
     todosHtml += '</ul>'
   }
@@ -78,17 +77,22 @@ function addList() {
       name: listadd,
       todos: []
     })
-  }    
+  }
   render();
 }
 
 function removeList() {
   const listrem = document.getElementById('list-remove-box').value;
   if (listrem) {
-    lists.filter( list => {
+    lists.filter(list => {
      return list != listrem;
     })
   }    
+  render();
+}
+
+function changeList(index) {
+  currentList = lists[index];
   render();
 }
 
@@ -133,8 +137,13 @@ function onCheck(index) {
   }
 }
 
-function clearTodo(index) {
-  
+function clearTodo() {
+  if (document.getElementById("todo").checked == true) {
+    currentList.todos = currentList.todos.filter( todo => {
+      return todo.text != textrem;
+     })
+  }
+  render();
 }
 
 function editTodo() {
