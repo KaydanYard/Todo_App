@@ -37,7 +37,11 @@ function render() {
   let listsHtml = '<ul class="list-group">';
   let currentClass = 'active';
   lists.forEach((list, idx) => {
-    listsHtml += `<li class="list-group-item ${currentClass}"><button onclick="changeList(${idx})">${list.name}</button></li>`;
+    listsHtml += 
+      `<li class="list-group-item ${currentClass}" id="list${idx}">
+      <button onclick="changeList(${idx})">${list.name}</button>
+      <button id="list-remove-btn" onclick="removeList(${idx})">X</button>
+      </li>`;
     currentClass = '';
   });
   listsHtml += '</ul>';
@@ -81,8 +85,8 @@ function addList() {
   render();
 }
 
-function removeList() {
-  const listrem = document.getElementById('list-remove-box').value;
+function removeList(index) {
+  const listrem = document.getElementById('list' + index).value;
   if (listrem) {
     lists.filter(list => {
      return list != listrem;
@@ -138,10 +142,18 @@ function onCheck(index) {
 }
 
 function clearTodo() {
-  if (document.getElementById("todo").checked == true) {
-    currentList.todos = currentList.todos.filter( todo => {
-      return todo.text != textrem;
-     })
+  const matches = document.querySelectorAll("#todo");
+
+  for (let i = matches.length-1; i >= 0; i--) {
+    console.log(matches[i]);
+    let elemID = matches[i].childNodes[0].id;
+    let IDNum = elemID[elemID.length-1];
+    let elemProps = currentList.todos[IDNum];
+
+    if (elemProps.completed == true) {
+      console.log(elemProps);
+      currentList.todos.splice(IDNum,1);
+    }
   }
   render();
 }
